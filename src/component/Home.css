@@ -1,0 +1,26 @@
+.home{
+    margin: +10px 8px 0px;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background-color: rgb(234,237,237);
+}
+.home__row{
+    display:flex;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right:5px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+.banner{
+    display: flex;
+    justify-content: center;
+}
+.banner__img{
+    max-height: 250px;
+    max-width: 100%;
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
