@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-class Form extends Component {
+class dealForm extends Component {
 
     render() {
         return (
             <div>
-                <Form>
+                <form>
                     <label>Product Description</label>
                     <input type="text" name="productDescription" id="productDescription"
                         autoComplete="false" placeholder="Product Details" />
@@ -27,8 +27,8 @@ class Form extends Component {
                     <br />
 
                     <label>RetailerName</label>
-                     <input type="text" name="retailerName" id="retailerName"
-                        />
+                    <input type="text" name="retailerName" id="retailerName"
+                    />
                     <br />
 
                     <label>Product Type</label>
@@ -38,12 +38,12 @@ class Form extends Component {
 
                     <label>Product Image</label>
                     <input type="file" inputProps={{ accept: 'image/*' }} name="productImage" id="productImage"
-                        />
+                    />
                     <br />
-                </Form>
+                </form>
             </div>
-            )
+        )
     }
 }
 
-export default Form;
+export default dealForm;
