@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from './component/Header';
 import Home from './component/Home';
 import Footer from './component/Footer';
+//import { ProtectedRoute } from "./protected.route";
 
 function App() {
   const [search, setSearch] = useState();
@@ -11,12 +12,8 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          {/* <Route path="/login">
-            <h1>login</h1>
-          </Route>
-          <Route path="/newpost">
-            <NewPost />
-          </Route> */}
+          {/* 
+          <ProtectedRoute exact path="/app" component={AppLayout} /> */}
           <Route path="/">
             <Header onSearchItem={setSearch} />
             <Home search={search} />

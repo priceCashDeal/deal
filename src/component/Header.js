@@ -3,7 +3,6 @@ import logo1 from '../img/logo1.png';
 import "./Header.css";
 import { Link } from "react-router-dom";
 import SearchIcon from "@material-ui/icons/Search";
-import db from '../firebase';
 import { auth, provider, firebaseApp } from '../firebase';
 
 function Header({ onSearchItem }) {
