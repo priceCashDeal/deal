@@ -51,7 +51,11 @@ function Header({ onSearchItem }) {
                     <span className="header__optionLineTwo">{user}</span>
                 </div>
             </div>
+            <div>
+            <img src={logo1} alt="logo image" className="header__logo" />
+        </div>
         </nav >
+       
     )
 }
 

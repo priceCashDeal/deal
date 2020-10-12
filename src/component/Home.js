@@ -67,6 +67,8 @@ function Home({ search }) {
             <div className="banner">
                 <img src={banner} alt="logo image" className="banner__img" />
             </div>
+            <div>gajhsgajshg</div>
+            
             <div className="home">
                 <div className="home__row">
                     {//need to put a comment for search in discription
@@ -85,6 +87,7 @@ function Home({ search }) {
                 </div>
             </div>
         </div>
+
     )
 }
 
