@@ -49,11 +49,9 @@ function Header({ onSearchItem }) {
                 <div className="header__option" onClick={googleSignUp}>
                     <span className="header__optionLineOne">Hello</span>
                     <span className="header__optionLineTwo">{user}</span>
-                </div>
+                </div>  
             </div>
-            <div>
-            <img src={logo1} alt="logo image" className="header__logo" />
-        </div>
+          
         </nav >
        
     )

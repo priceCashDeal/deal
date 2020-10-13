@@ -1,6 +1,10 @@
 import firebase from "firebase";
 import 'firebase/auth';
-export const firebaseApp = firebase.initializeApp({
+import 'firebase/storage';
+import 'firebase/firestore';
+
+
+var firebaseConfig = {
     apiKey: "AIzaSyBd934XmAmJLJwVxCNydef7jUxBunVvyeo",
     authDomain: "pricecrashdeals-45309.firebaseapp.com",
     databaseURL: "https://pricecrashdeals-45309.firebaseio.com",
@@ -9,12 +13,16 @@ export const firebaseApp = firebase.initializeApp({
     messagingSenderId: "1005366834793",
     appId: "1:1005366834793:web:f6855d870a1ebd648254f8",
     measurementId: "G-5P0FFEQK0J"
-});
+};
+
+export const firebaseApp = firebase.initializeApp(firebaseConfig);
+
 
 const db = firebaseApp.firestore();
 export default db;
 export const auth = firebase.auth();
 export const provider = new firebase.auth.GoogleAuthProvider();
+export const storage= firebase.storage();
 
 
 
