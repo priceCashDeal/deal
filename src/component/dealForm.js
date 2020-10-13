@@ -1,60 +1,61 @@
 import React, { Component } from 'react';
-import storage from '../firebase';
+import { storage } from '../firebase';
 import "./dealForm.css";
-import form from './NewPost';
+
 
 class dealForm extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            Image: null,
-            url: null
+        this.state = {
+            image: null,
+            url: '',
+            progress: 0
         }
-        this.handleChange=this.handleChange.bind(this);
-        this.handleUpload=this.handleUpload.bind(this);
+        this.handleChange = this
+            .handleChange
+            .bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
     }
-
-    handleChange = e =>{
-        if(e.target.files[0]){
+    handleChange = e => {
+        if (e.target.files[0]) {
             const image = e.target.files[0];
-            this.setState(() => ({image}))
+            this.setState(() => ({ image }));
         }
     }
-
-    handleUpload= ()=>{
-        const image = this.state;
-
-        console.log(storage);
-        const uploadTask=storage.ref('images/${image.name}').put(image);
-        
-
+    handleUpload = () => {
+        const { image } = this.state;
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
         uploadTask.on('state_changed',
-        (snapshot) => {
-            //demonstrate the progress
-        },(error)=>{
-            //error function
-            console.log(error);
-        }
-        ,()=>{
-            //complete function
-            storage.ref('images').child(this.name).getDownloadURL().then(url=>{
-                console.log(url);
-            })
-        });
+            (snapshot) => {
+                // progrss function ....
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                this.setState({ progress });
+            },
+            (error) => {
+                // error function ....
+                console.log(error);
+            },
+            () => {
+                // complete function ....
+                storage.ref('images').child(image.name).getDownloadURL().then(url => {
+                    console.log(url);
+                    this.setState({ url });
+                })
+            });
     }
 
-    
+
 
     render() {
         return (
             <div class="dealForm">
-             
+
                 <form>
 
                     <table class="dealFormTable">
-                <caption class="tableTitle">PCD ADMIN DESH-BOARD</caption>
-               
+                        <caption class="tableTitle">PCD ADMIN DESH-BOARD</caption>
+
                         <tr><td>
                             <label class="tableSize">Product Description</label>
                         </td>
@@ -121,18 +122,19 @@ class dealForm extends Component {
 
                             </td>
                         </tr>
-                        <tr><td>
-                            <label class="tableSize">Product Image</label>
-                        </td>
+                        <tr>
+                            <td>
+                                <label class="tableSize">Product Image</label>
+                            </td>
                             <td>
                                 <input type="file" props={{ accept: 'image/*' }} name="productImage" id="productImage"
-                               onChange={this.handleChange}
-                               />
+                                    onChange={this.handleChange}
+                                />
                                 <br />
                             </td>
                         </tr>
                         <div class="postDealButton">
-                        <input type="button" value="Post Deal" calss="dealFormSubmit" onClick={this.handleUpload}></input>
+                            <input type="button" value="Post Deal" calss="dealFormSubmit" onClick={this.handleUpload}></input>
                         </div>
                     </table>
                 </form>
