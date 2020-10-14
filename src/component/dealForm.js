@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Container, Form, } from 'react-bootstrap';
 import { storage } from '../firebase';
 import "./dealForm.css";
+
 
 
 class dealForm extends Component {
@@ -41,104 +43,91 @@ class dealForm extends Component {
                 storage.ref('images').child(image.name).getDownloadURL().then(url => {
                     console.log(url);
                     this.setState({ url });
+
                 })
             });
     }
 
-
-
     render() {
         return (
-            <div class="dealForm">
 
-                <form>
+            <div id="dealForm">
+                <h1 className="text-white text-center font-weight-bold bg-success">PCD ADMIN DESH-BOARD</h1>
+                <Container>
+                    <form>
+                        <Form.Group>
+                            <Form.Label>Product Description</Form.Label>
+                            <input type="text" name="productDescription" id="productDescription"
+                                autoComplete="false" placeholder="Product Details" 
+                                className="form-control" autocomplete="off"/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label >Deal Price</Form.Label>
+                            <input type="text" name="dealPrice" id="dealPrice"
+                                autoComplete="false" placeholder="Deal Price" 
+                                className="form-control" autocomplete="off"/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label >MRP</Form.Label>
+                            <input type="text" name="mrp" id="mrp"
+                                autoComplete="false" placeholder="MRP" 
+                                className="form-control" autocomplete="off"/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label >Product Url</Form.Label>
 
-                    <table class="dealFormTable">
-                        <caption class="tableTitle">PCD ADMIN DESH-BOARD</caption>
+                            <input type="text" name="productUrl" id="productUrl"
+                                autoComplete="false" placeholder="URl" 
+                                className="form-control" autocomplete="off"/>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label >RetailerName</Form.Label>
 
-                        <tr><td>
-                            <label class="tableSize">Product Description</label>
-                        </td>
-                            <td>
-                                <input type="text" name="productDescription" id="productDescription"
-                                    autoComplete="false" placeholder="Product Details" />
-                            </td>
-                        </tr>
-                        <tr><td>
-                            <label class="tableSize">Deal Price</label>
-                        </td>
-                            <td>
-                                <input type="text" name="dealPrice" id="dealPrice"
-                                    autoComplete="false" placeholder="Deal Price" />
+                            <select
+                                name="retailerName" id="retailerName" className="form-control" >
+                                <option value="Amazon">Amazon</option>
+                                <option value="Flipkart">Flipkart</option>
+                                <option value="Myntra">Myntra</option>
+                                <option value="Ajio">Ajio</option>
+                                <option value="TataCliq">TataCliq</option>
+                                <option value="Others">Others</option>
 
-                            </td>
-                        </tr>
-                        <tr><td>
-                            <label class="tableSize">MRP</label>
-                        </td>
-                            <td>
-                                <input type="text" name="mrp" id="mrp"
-                                    autoComplete="false" placeholder="MRP" />
+                            </select>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label >Product Type</Form.Label>
 
-                            </td>
-                        </tr>
-                        <tr><td>
-                            <label class="tableSize">Product Url</label>
-                        </td>
-                            <td>
-                                <input type="text" name="productUrl" id="productUrl"
-                                    autoComplete="false" placeholder="URl" />
+                            <select
+                                name="dealType" id="dealType"  className="form-control">
+                                <option value="normal">Normal</option>
+                                <option value="loot">Loot</option>
+                                <option value="lightening">Lightening</option>
+                                <option value="referAndEarn">ReferAndEarn</option>
+                            </select>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label >Product Image</Form.Label>
 
-                            </td>
-                        </tr>
-                        <tr><td>
-                            <label class="tableSize">RetailerName</label>
-                        </td>
-                            <td>
-                                <select
-                                    name="retailerName" id="retailerName" class="form-control" >
-                                    <option value="Amazon">Amazon</option>
-                                    <option value="Flipkart">Flipkart</option>
-                                    <option value="Myntra">Myntra</option>
-                                    <option value="Ajio">Ajio</option>
-                                    <option value="TataCliq">TataCliq</option>
-                                    <option value="Others">Others</option>
+                            <input type="file" props={{ accept: 'image/*' }} name="productImage" id="productImage"
+                                onChange={this.handleChange}
+                                className="form-control"
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <div id="postDealButton">
+                                <input type="button" value="Post Deal" class="btn btn-success" 
+                                onClick={this.handleUpload}></input>
+                            </div>
+                        </Form.Group>
 
-                                </select>
-
-                            </td>
-                        </tr>
-                        <tr><td>
-                            <label class="tableSize">Product Type</label>
-                        </td>
-                            <td>
-                                <select
-                                    name="dealType" id="dealType" class="form-control">
-                                    <option value="normal">Normal</option>
-                                    <option value="loot">Loot</option>
-                                    <option value="lightening">Lightening</option>
-                                    <option value="referAndEarn">ReferAndEarn</option>
-                                </select>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="tableSize">Product Image</label>
-                            </td>
-                            <td>
-                                <input type="file" props={{ accept: 'image/*' }} name="productImage" id="productImage"
-                                    onChange={this.handleChange}
-                                />
-                                <br />
-                            </td>
-                        </tr>
-                        <div class="postDealButton">
-                            <input type="button" value="Post Deal" calss="dealFormSubmit" onClick={this.handleUpload}></input>
-                        </div>
-                    </table>
-                </form>
+                    </form>
+                </Container>
             </div>
+
+
+
+
+
         )
     }
 }
