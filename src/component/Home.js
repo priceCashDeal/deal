@@ -15,14 +15,13 @@ function Home({ search }) {
 
 
     useEffect(() => {
-        db.collection('products').onSnapshot(snapshot => {
+        db.collection('products').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
             setAllProducts(snapshot.docs.map(doc => ({
                 id: doc.id, Retailer: doc.data().retailerName,
                 Product_details: doc.data().productDescription
                 , deal_price: doc.data().dealPrice
                 , product_link: doc.data().productUrl
                 , mrp: doc.data().mrp
-                , off: doc.data().discount
                 , img: doc.data().productImage
             })))
         })
@@ -79,8 +78,9 @@ function Home({ search }) {
                                 deal_price={product.deal_price}
                                 product_link={product.product_link}
                                 mrp={product.mrp}
-                                off={product.off}
-                                img={product.img} />
+                                off={Math.floor(((product.mrp - product.deal_price) / product.mrp) * 100)}
+                                img={product.img}
+                                 />
                         })}
                 </div>
                 <div className="home__row">

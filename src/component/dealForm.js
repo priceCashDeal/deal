@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Form, } from 'react-bootstrap';
-import { storage } from '../firebase';
+import db, { storage } from '../firebase';
+import firebase from 'firebase';
 import "./dealForm.css";
 
 
@@ -14,9 +15,8 @@ class dealForm extends Component {
             url: '',
             progress: 0
         }
-        this.handleChange = this
-            .handleChange
-            .bind(this);
+
+        this.handleChange = this.handleChange.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
     }
     handleChange = e => {
@@ -25,28 +25,37 @@ class dealForm extends Component {
             this.setState(() => ({ image }));
         }
     }
-    handleUpload = () => {
+    handleUpload = (event) => {
+        event.preventDefault();
         const { image } = this.state;
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
         uploadTask.on('state_changed',
             (snapshot) => {
-                // progrss function ....
                 const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                 this.setState({ progress });
             },
             (error) => {
-                // error function ....
+
                 console.log(error);
             },
             () => {
                 // complete function ....
                 storage.ref('images').child(image.name).getDownloadURL().then(url => {
                     console.log(url);
-                    this.setState({ url });
-
+                    db.collection('products').add({
+                        dealPrice: document.getElementById("dealPrice").value,
+                        mrp: document.getElementById("mrp").value,
+                        productDescription: document.getElementById("productDescription").value,
+                        productImage: url,
+                        productType: document.getElementById("dealType").value,
+                        productUrl: document.getElementById("productUrl").value,
+                        retailerName: document.getElementById("retailerName").value,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    })
                 })
             });
     }
+
 
     render() {
         return (
@@ -54,30 +63,30 @@ class dealForm extends Component {
             <div id="dealForm">
                 <h1 className="text-white text-center font-weight-bold bg-success">PCD ADMIN DASHBOARD</h1>
                 <Container>
-                    <form>
+                    <form methord="post">
                         <Form.Group>
                             <Form.Label className="font-weight-bold">Product Description</Form.Label>
                             <input type="text" name="productDescription" id="productDescription"
-                                autoComplete="false" placeholder="Product Details" 
-                                className="form-control"/>
+                                placeholder="Product Details"
+                                className="form-control" />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="font-weight-bold" >Deal Price</Form.Label>
                             <input type="text" name="dealPrice" id="dealPrice"
-                                autoComplete="false" placeholder="Deal Price" 
-                                className="form-control"/>
+                                placeholder="Deal Price"
+                                className="form-control" />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="font-weight-bold">MRP</Form.Label>
                             <input type="text" name="mrp" id="mrp"
-                                autoComplete="false" placeholder="MRP" 
+                                placeholder="MRP"
                                 className="form-control" />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="font-weight-bold">Product Url</Form.Label>
 
                             <input type="text" name="productUrl" id="productUrl"
-                                autoComplete="false" placeholder="URl" 
+                                placeholder="URl"
                                 className="form-control" />
                         </Form.Group>
                         <Form.Group>
@@ -98,7 +107,7 @@ class dealForm extends Component {
                             <Form.Label className="font-weight-bold">Product Type</Form.Label>
 
                             <select
-                                name="dealType" id="dealType"  className="form-control">
+                                name="dealType" id="dealType" className="form-control">
                                 <option value="normal">Normal</option>
                                 <option value="loot">Loot</option>
                                 <option value="lightening">Lightening</option>
@@ -115,8 +124,7 @@ class dealForm extends Component {
                         </Form.Group>
                         <Form.Group>
                             <div id="postDealButton">
-                                <input type="button" value="Post Deal" className="btn btn-success" 
-                                onClick={this.handleUpload}></input>
+                                <input type="submit" value="Post Deal" className="btn btn-success" onClick={this.handleUpload}></input>
                             </div>
                         </Form.Group>
 
