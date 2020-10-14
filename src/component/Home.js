@@ -4,6 +4,7 @@ import "./Home.css";
 import db from '../firebase';
 import banner from '../img/banner.png';
 import Pagination from './Pagination';
+import Menu from './menu';
 
 function Home({ search }) {
 
@@ -67,7 +68,7 @@ function Home({ search }) {
             <div className="banner">
                 <img src={banner} alt="logo image" className="banner__img" />
             </div>
-            <div>gajhsgajshg</div>
+    <div className="menu_bar">{Menu}</div>
             
             <div className="home">
                 <div className="home__row">

@@ -123,11 +123,6 @@ class dealForm extends Component {
                     </form>
                 </Container>
             </div>
-
-
-
-
-
         )
     }
 }
