@@ -52,36 +52,36 @@ class dealForm extends Component {
         return (
 
             <div id="dealForm">
-                <h1 className="text-white text-center font-weight-bold bg-success">PCD ADMIN DESH-BOARD</h1>
+                <h1 className="text-white text-center font-weight-bold bg-success">PCD ADMIN DASHBOARD</h1>
                 <Container>
                     <form>
                         <Form.Group>
-                            <Form.Label>Product Description</Form.Label>
+                            <Form.Label className="font-weight-bold">Product Description</Form.Label>
                             <input type="text" name="productDescription" id="productDescription"
                                 autoComplete="false" placeholder="Product Details" 
                                 className="form-control" autocomplete="off"/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label >Deal Price</Form.Label>
+                            <Form.Label className="font-weight-bold" >Deal Price</Form.Label>
                             <input type="text" name="dealPrice" id="dealPrice"
                                 autoComplete="false" placeholder="Deal Price" 
                                 className="form-control" autocomplete="off"/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label >MRP</Form.Label>
+                            <Form.Label className="font-weight-bold">MRP</Form.Label>
                             <input type="text" name="mrp" id="mrp"
                                 autoComplete="false" placeholder="MRP" 
                                 className="form-control" autocomplete="off"/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label >Product Url</Form.Label>
+                            <Form.Label className="font-weight-bold">Product Url</Form.Label>
 
                             <input type="text" name="productUrl" id="productUrl"
                                 autoComplete="false" placeholder="URl" 
                                 className="form-control" autocomplete="off"/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label >RetailerName</Form.Label>
+                            <Form.Label className="font-weight-bold">RetailerName</Form.Label>
 
                             <select
                                 name="retailerName" id="retailerName" className="form-control" >
@@ -95,7 +95,7 @@ class dealForm extends Component {
                             </select>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label >Product Type</Form.Label>
+                            <Form.Label className="font-weight-bold">Product Type</Form.Label>
 
                             <select
                                 name="dealType" id="dealType"  className="form-control">
@@ -106,7 +106,7 @@ class dealForm extends Component {
                             </select>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label >Product Image</Form.Label>
+                            <Form.Label className="font-weight-bold">Product Image</Form.Label>
 
                             <input type="file" props={{ accept: 'image/*' }} name="productImage" id="productImage"
                                 onChange={this.handleChange}
