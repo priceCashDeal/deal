@@ -68,7 +68,7 @@ function Home({ search }) {
             <div className="banner">
                 <img src={banner} alt="logo image" className="banner__img" />
             </div>
-    <div>{PersistentDrawerLeft}</div>
+            
             
             <div className="home">
                 <div className="home__row">

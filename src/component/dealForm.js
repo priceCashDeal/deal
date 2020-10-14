@@ -59,26 +59,26 @@ class dealForm extends Component {
                             <Form.Label className="font-weight-bold">Product Description</Form.Label>
                             <input type="text" name="productDescription" id="productDescription"
                                 autoComplete="false" placeholder="Product Details" 
-                                className="form-control" autocomplete="off"/>
+                                className="form-control"/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="font-weight-bold" >Deal Price</Form.Label>
                             <input type="text" name="dealPrice" id="dealPrice"
                                 autoComplete="false" placeholder="Deal Price" 
-                                className="form-control" autocomplete="off"/>
+                                className="form-control"/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="font-weight-bold">MRP</Form.Label>
                             <input type="text" name="mrp" id="mrp"
                                 autoComplete="false" placeholder="MRP" 
-                                className="form-control" autocomplete="off"/>
+                                className="form-control" />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="font-weight-bold">Product Url</Form.Label>
 
                             <input type="text" name="productUrl" id="productUrl"
                                 autoComplete="false" placeholder="URl" 
-                                className="form-control" autocomplete="off"/>
+                                className="form-control" />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label className="font-weight-bold">RetailerName</Form.Label>
@@ -115,7 +115,7 @@ class dealForm extends Component {
                         </Form.Group>
                         <Form.Group>
                             <div id="postDealButton">
-                                <input type="button" value="Post Deal" class="btn btn-success" 
+                                <input type="button" value="Post Deal" className="btn btn-success" 
                                 onClick={this.handleUpload}></input>
                             </div>
                         </Form.Group>
