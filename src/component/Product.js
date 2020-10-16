@@ -7,7 +7,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 function product({ Retailer, Product_details, deal_price, mrp, off, img, product_link }) {
     const shareWhatsapp = (event) => {
-        window.open("https://api.whatsapp.com/send?text=" + Product_details + " " + mrp + " " + product_link);
+        window.open("https://api.whatsapp.com/send?text=" + Product_details +  "@"+ deal_price +"  ~"+mrp + "~  Discount:"+off+"%  " + product_link);
     }
     const getDeal = (event) => {
         window.open(product_link);
