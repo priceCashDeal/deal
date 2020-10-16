@@ -142,7 +142,7 @@ function Product() {
                             <br />
                             pricecrashdeals@gmail.com
                             <br />
-                            This document was last updated on April 08, 2015
+                            This document was last updated on October 17, 2020
                             <br />
                         <br />
                         <br />
