@@ -14,14 +14,13 @@ function Home({ search }) {
 
 
     useEffect(() => {
-        db.collection('products').onSnapshot(snapshot => {
+        db.collection('products').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
             setAllProducts(snapshot.docs.map(doc => ({
                 id: doc.id, Retailer: doc.data().retailerName,
                 Product_details: doc.data().productDescription
                 , deal_price: doc.data().dealPrice
                 , product_link: doc.data().productUrl
                 , mrp: doc.data().mrp
-                , off: doc.data().discount
                 , img: doc.data().productImage
             })))
         })
@@ -37,13 +36,15 @@ function Home({ search }) {
             setProducts(allproducts);
         }
         else {
+            var productslist = [];
             allproducts.map(product => {
                 var searchdetails = product.Product_details;
-                if (searchdetails && searchdetails.includes(search)) {
-                    setProducts([product]);
+                if ((searchdetails.toLowerCase()).includes(search.toLowerCase())) {
+                    productslist.push(product);
+                    console.log(product);
                 }
-
-            })
+            });
+            setProducts(productslist);
         }
     }, [search]);
 
@@ -64,6 +65,7 @@ function Home({ search }) {
 
     return (
         <div>
+            {/* <Menu /> */}
             <div className="banner">
                 <img src={banner} alt="logo image" className="banner__img" />
             </div>
@@ -72,11 +74,11 @@ function Home({ search }) {
                     {//need to put a comment for search in discription
                         currentProducts.map(product => {
                             //if (t < 0)
-                            return <Product Retailer={product.Retailer} Product_details={product.Product_details}
+                            return <Product key={product.id} Retailer={product.Retailer} Product_details={product.Product_details}
                                 deal_price={product.deal_price}
                                 product_link={product.product_link}
                                 mrp={product.mrp}
-                                off={product.off}
+                                off={Math.floor(((product.mrp - product.deal_price) / product.mrp) * 100)}
                                 img={product.img} />
                         })}
                 </div>

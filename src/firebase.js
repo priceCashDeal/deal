@@ -1,5 +1,7 @@
 import firebase from "firebase";
 import 'firebase/auth';
+import 'firebase/storage';
+
 export const firebaseApp = firebase.initializeApp({
     apiKey: "AIzaSyBd934XmAmJLJwVxCNydef7jUxBunVvyeo",
     authDomain: "pricecrashdeals-45309.firebaseapp.com",
@@ -15,6 +17,6 @@ const db = firebaseApp.firestore();
 export default db;
 export const auth = firebase.auth();
 export const provider = new firebase.auth.GoogleAuthProvider();
-
+export const storage = firebase.storage();
 
 

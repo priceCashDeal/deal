@@ -24,3 +24,12 @@
     color: white;
     text-align: center;
 }
+.policies{
+    height: 20px;
+    background:black;
+    text-align: center;
+}
+.link{
+    color: orange;
+    text-decoration: none;
+}

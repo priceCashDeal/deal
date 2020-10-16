@@ -4,10 +4,14 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import TelegramIcon from '@material-ui/icons/Telegram';
+import { Link } from "react-router-dom";
 
 function Footer() {
     return (
         <div className="footer">
+            <div className="policies">
+                <Link className="link" to="/policies"><p>Privacy Policy</p></Link>
+            </div>
             <div className="footer__row">
                 <a href="https://t.me/pricecrashdeals" target="_blank">
                     <div className="icon">
